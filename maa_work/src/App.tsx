@@ -88,66 +88,100 @@ function EraPage({ era }: { era: (typeof decades)[number] }) {
   const records = cards.filter((card) => Number(card.year) >= start && Number(card.year) < end);
   const featuredImage = records[0]?.img;
 
-  return (
-    <main id="era-content">
-      <div className="px-5 sm:px-10 lg:px-20 pt-8 lg:pt-12">
-        <a href="/#timeline" className="inline-flex items-center gap-2 font-mono text-[12px] t-accent hover:opacity-70 transition-opacity">← BACK TO THE TIMELINE</a>
+return (
+  <main id="era-content">
+    <div className="px-5 sm:px-10 lg:px-20 pt-8 lg:pt-12">
+      <a href="/#timeline" className="inline-flex items-center gap-2 font-mono text-[12px] t-accent hover:opacity-70 transition-opacity">← BACK TO THE TIMELINE</a>
+    </div>
+
+    <section className="px-5 sm:px-10 lg:px-20 pt-12 lg:pt-20 pb-14 lg:pb-24 grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] gap-10 xl:gap-16 items-center">
+      <div className="min-w-0">
+        <div className="flex flex-wrap items-center gap-3 font-mono text-[12px] t-accent uppercase tracking-wider">
+          <span>ERA DOSSIER / 0{index + 1}</span><span className="t-ink-muted">—</span><span>{era.label}</span>
+        </div>
+        <h1 className="font-['Fraunces'] font-bold t-ink leading-[1.08] mt-7 max-w-3xl" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1', fontSize: "clamp(34px, 4.5vw, 68px)" }}>{era.title}</h1>
+        <p className="font-['Manrope'] t-ink-muted leading-[1.7] mt-7 max-w-xl" style={{ fontSize: "clamp(15px, 1.2vw, 18px)" }}>{era.subtitle}</p>
+        <div className="mt-10 pt-5 border-t t-border flex flex-wrap items-center justify-between gap-3 max-w-xl font-mono text-[11px] t-ink-muted uppercase tracking-wide">
+          <span>Mongolian Architectural Archives</span><span>{era.label}</span>
+        </div>
       </div>
 
-      <section className="px-5 sm:px-10 lg:px-20 pt-12 lg:pt-20 pb-14 lg:pb-24 grid lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] gap-10 lg:gap-16 items-center">
-        <div className="min-w-0">
-          <div className="flex flex-wrap items-center gap-3 font-mono text-[12px] t-accent uppercase tracking-wider">
-            <span>ERA DOSSIER / 0{index + 1}</span><span className="t-ink-muted">—</span><span>{era.label}</span>
-          </div>
-          <h1 className="font-['Fraunces'] font-bold t-ink leading-[1.04] mt-7 max-w-3xl" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1', fontSize: "clamp(38px, 5.5vw, 82px)" }}>{era.title}</h1>
-          <p className="font-['Manrope'] t-ink-muted leading-[1.65] mt-7 max-w-xl" style={{ fontSize: "clamp(15px, 1.4vw, 18px)" }}>{era.subtitle}</p>
-          <div className="mt-10 pt-5 border-t t-border flex items-center justify-between max-w-xl font-mono text-[11px] t-ink-muted uppercase tracking-wide">
-            <span>Mongolian Architectural Archives</span><span>{era.label}</span>
-          </div>
+      {featuredImage ? (
+        <figure className="m-0 min-w-0 w-full">
+          <div className="t-card border rounded-2xl overflow-hidden aspect-[4/3]"><img src={featuredImage} alt={records[0].alt} className="w-full h-full object-cover" /></div>
+          <figcaption className="font-mono text-[11px] t-ink-muted mt-3 flex flex-wrap justify-between gap-3"><span>FROM THE ARCHIVE / {records[0].ref}</span><span>{records[0].year}</span></figcaption>
+        </figure>
+      ) : (
+        <div className="t-editorial border rounded-2xl aspect-[4/3] flex flex-col justify-between p-7 sm:p-10" aria-label="Archive period index">
+          <span className="font-mono text-[12px] t-accent tracking-widest">MAA / PERIOD INDEX</span>
+          <span className="font-['Fraunces'] t-ink leading-none" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1', fontSize: "clamp(60px, 10vw, 150px)" }}>30—50</span>
+          <span className="border-t t-border pt-4 font-mono text-[12px] t-ink-muted">DOCUMENTING A CITY IN TRANSITION</span>
         </div>
-        {featuredImage ? (
-          <figure className="m-0 min-w-0">
-            <div className="t-card border rounded-2xl overflow-hidden aspect-[4/3]"><img src={featuredImage} alt={records[0].alt} className="w-full h-full object-cover" /></div>
-            <figcaption className="font-mono text-[11px] t-ink-muted mt-3 flex justify-between gap-3"><span>FROM THE ARCHIVE / {records[0].ref}</span><span>{records[0].year}</span></figcaption>
-          </figure>
-        ) : (
-          <div className="t-editorial border rounded-2xl aspect-[4/3] flex flex-col justify-between p-7 sm:p-10" aria-label="Archive period index">
-            <span className="font-mono text-[12px] t-accent tracking-widest">MAA / PERIOD INDEX</span>
-            <span className="font-['Fraunces'] t-ink leading-none" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1', fontSize: "clamp(60px, 10vw, 150px)" }}>30—50</span>
-            <span className="border-t t-border pt-4 font-mono text-[12px] t-ink-muted">DOCUMENTING A CITY IN TRANSITION</span>
-          </div>
-        )}
-      </section>
+      )}
+    </section>
 
-      <section className="t-editorial border-y px-5 sm:px-10 lg:px-20 py-14 lg:py-20 grid lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1fr)] gap-8 lg:gap-20">
-        <div><span className="font-mono text-[12px] t-accent uppercase tracking-wider">01 / Historical context</span><h2 className="font-['Fraunces'] t-ink leading-tight mt-5" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1', fontSize: "clamp(28px, 3.5vw, 44px)" }}>Reading the built landscape</h2></div>
-        <div className="flex flex-col gap-6 justify-center"><p className="font-['Manrope'] t-ink leading-[1.8] text-[16px]">{era.context}</p><p className="font-['Manrope'] t-ink-muted leading-[1.8] text-[15px]">{era.detail}</p></div>
-      </section>
+    <section className="t-editorial border-y px-5 sm:px-10 lg:px-20 py-14 lg:py-20 grid grid-cols-1 xl:grid-cols-[minmax(0,0.7fr)_minmax(0,1fr)] gap-8 xl:gap-20">
+      <div>
+        <span className="font-mono text-[12px] t-accent uppercase tracking-wider">01 / Historical context</span>
+        <h2 className="font-['Fraunces'] t-ink leading-tight mt-5" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1', fontSize: "clamp(28px, 3.2vw, 44px)" }}>Reading the built landscape</h2>
+      </div>
+      <div className="flex flex-col gap-6 justify-center">
+        <p className="font-['Manrope'] t-ink leading-[1.8] text-[16px]">{era.context}</p>
+        <p className="font-['Manrope'] t-ink-muted leading-[1.8] text-[15px]">{era.detail}</p>
+      </div>
+    </section>
 
-      <section className="px-5 sm:px-10 lg:px-20 py-14 lg:py-20">
-        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4 mb-8 border-b t-border pb-6">
-          <div><span className="font-mono t-accent text-[12px] tracking-wider">02 / PERIOD REGISTER</span><h2 className="font-['Fraunces'] t-ink mt-3" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1', fontSize: "clamp(28px, 3.5vw, 40px)" }}>Buildings & traces</h2></div>
-          <span className="font-mono t-ink-muted text-[12px]">{era.tag}</span>
+    <section className="px-5 sm:px-10 lg:px-20 py-14 lg:py-20">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4 mb-8 border-b t-border pb-6">
+        <div>
+          <span className="font-mono t-accent text-[12px] tracking-wider">02 / PERIOD REGISTER</span>
+          <h2 className="font-['Fraunces'] t-ink mt-3" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1', fontSize: "clamp(28px, 3.2vw, 40px)" }}>Buildings & traces</h2>
         </div>
-        {records.length ? (
-          <div className="grid md:grid-cols-2 gap-6">
-            {records.map((record) => (
-              <article key={record.ref} className="t-card border rounded-2xl overflow-hidden grid sm:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] md:grid-cols-1 xl:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)]">
-                <img src={record.img} alt={record.alt} loading="lazy" className="w-full h-full min-h-56 max-h-80 object-cover" />
-                <div className="p-6 sm:p-8 flex flex-col justify-between gap-8"><div><div className="flex justify-between gap-3 font-mono text-[11px] t-accent"><span>{record.ref}</span><span>{record.year}</span></div><h3 className="font-['Fraunces'] t-ink text-[24px] leading-tight mt-5" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>{record.title}</h3><p className="font-['Manrope'] t-ink-muted text-[14px] leading-[1.7] mt-4">{record.desc}</p></div><span className="font-mono t-ink-muted text-[11px] uppercase">{record.location}</span></div>
-              </article>
-            ))}
-          </div>
-        ) : (
-          <div className="t-card border rounded-2xl p-8 sm:p-12 max-w-3xl"><span className="font-mono t-accent text-[12px]">REGISTER NOTE / {era.label}</span><h3 className="font-['Fraunces'] t-ink text-[26px] mt-5" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>An interval of change and loss</h3><p className="font-['Manrope'] t-ink-muted text-[15px] leading-[1.7] mt-4">No building in the current featured register is dated to this interval. The period dossier remains open as historic plans, photographs and verified records are added.</p><a href="/#inquire" className="inline-block mt-7 font-mono t-accent text-[12px] underline underline-offset-4">CONTRIBUTE A RECORD ↗</a></div>
-        )}
-      </section>
+        <span className="font-mono t-ink-muted text-[12px]">{era.tag}</span>
+      </div>
 
-      <section className="px-5 sm:px-10 lg:px-20 pb-16 lg:pb-24">
-        <div className="bg-[#1d1f20] rounded-2xl p-7 sm:p-10 flex flex-col md:flex-row md:items-end md:justify-between gap-8"><div className="max-w-xl"><span className="font-mono text-[#d68c45] text-[12px] tracking-wider">FURTHER READING</span><h2 className="font-['Fraunces'] text-[#faf9f6] text-[28px] sm:text-[34px] mt-3" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>Continue the inquiry</h2><p className="font-['Manrope'] text-[#e5e1da] text-[14px] leading-[1.7] mt-3">Explore the wider historical context, or move through the architectural timeline.</p></div><a href={era.url} target="_blank" rel="noopener noreferrer" className="inline-flex self-start md:self-auto shrink-0 rounded-lg border border-[#e5e1da] text-[#faf9f6] px-5 py-3 font-['Manrope'] text-[13px] hover:opacity-70 transition-opacity">External period reference ↗</a></div>
-        <nav aria-label="Other eras" className="flex flex-wrap gap-3 mt-8">{decades.map((other) => <a key={other.slug} href={`/eras/${other.slug}`} aria-current={other === era ? "page" : undefined} className={`t-pill border rounded-full px-4 py-3 font-mono text-[12px] hover:opacity-70 transition-opacity ${other === era ? "t-pill-active" : ""}`}>{other.label}</a>)}</nav>
-      </section>
-    </main>
+      {records.length ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {records.map((record) => (
+            <article key={record.ref} className="t-card border rounded-2xl overflow-hidden grid grid-cols-1 xl:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)]">
+              <img src={record.img} alt={record.alt} loading="lazy" className="w-full h-64 xl:h-full min-h-56 max-h-80 object-cover" />
+              <div className="p-6 sm:p-8 flex flex-col justify-between gap-8">
+                <div>
+                  <div className="flex justify-between gap-3 font-mono text-[11px] t-accent"><span>{record.ref}</span><span>{record.year}</span></div>
+                  <h3 className="font-['Fraunces'] t-ink text-[24px] leading-tight mt-5" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>{record.title}</h3>
+                  <p className="font-['Manrope'] t-ink-muted text-[14px] leading-[1.7] mt-4">{record.desc}</p>
+                </div>
+                <span className="font-mono t-ink-muted text-[11px] uppercase">{record.location}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div className="t-card border rounded-2xl p-8 sm:p-12 max-w-3xl">
+          <span className="font-mono t-accent text-[12px]">REGISTER NOTE / {era.label}</span>
+          <h3 className="font-['Fraunces'] t-ink text-[26px] mt-5" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>An interval of change and loss</h3>
+          <p className="font-['Manrope'] t-ink-muted text-[15px] leading-[1.7] mt-4">No building in the current featured register is dated to this interval. The period dossier remains open as historic plans, photographs and verified records are added.</p>
+          <a href="/#inquire" className="inline-block mt-7 font-mono t-accent text-[12px] underline underline-offset-4">CONTRIBUTE A RECORD ↗</a>
+        </div>
+      )}
+    </section>
+
+    <section className="px-5 sm:px-10 lg:px-20 pb-16 lg:pb-24">
+      <div className="bg-[#1d1f20] rounded-2xl p-7 sm:p-10 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+        <div className="max-w-xl">
+          <span className="font-mono text-[#d68c45] text-[12px] tracking-wider">FURTHER READING</span>
+          <h2 className="font-['Fraunces'] text-[#faf9f6] text-[28px] sm:text-[34px] mt-3" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>Continue the inquiry</h2>
+          <p className="font-['Manrope'] text-[#e5e1da] text-[14px] leading-[1.7] mt-3">Explore the wider historical context, or move through the architectural timeline.</p>
+        </div>
+        <a href={era.url} target="_blank" rel="noopener noreferrer" className="inline-flex self-start md:self-auto shrink-0 rounded-lg border border-[#e5e1da] text-[#faf9f6] px-5 py-3 font-['Manrope'] text-[13px] hover:opacity-70 transition-opacity">External period reference ↗</a>
+      </div>
+      <nav aria-label="Other eras" className="flex flex-wrap gap-3 mt-8">
+        {decades.map((other) => (
+          <a key={other.slug} href={`/eras/${other.slug}`} aria-current={other === era ? "page" : undefined} className={`t-pill border rounded-full px-4 py-3 font-mono text-[12px] hover:opacity-70 transition-opacity ${other === era ? "t-pill-active" : ""}`}>{other.label}</a>
+        ))}
+      </nav>
+    </section>
+  </main>
   );
 }
 
@@ -286,20 +320,20 @@ export default function App() {
 
       {era ? <EraPage era={era} /> : <main>
         {/* HERO */}
-        <section className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center px-5 sm:px-10 lg:px-20 py-12 lg:py-20">
-          <div className="flex flex-col gap-6 lg:gap-7 flex-1 min-w-0">
+        <section className="flex flex-col xl:flex-row gap-10 xl:gap-16 items-center px-5 sm:px-10 lg:px-20 py-12 lg:py-20">
+          <div className="flex flex-col gap-6 lg:gap-7 flex-1 min-w-0 w-full xl:max-w-[52%]">
             <div className="flex gap-2 items-center flex-wrap">
               <span className="font-mono font-semibold t-accent text-[12px]">COLL. 1910 — 2020</span>
               <div className="bg-[var(--color-border)] rounded-sm size-1 shrink-0" />
               <span className="font-mono font-normal t-ink-muted text-[12px]">48.86° N, 106.91° E</span>
             </div>
             <h1
-              className="font-['Fraunces'] font-bold t-ink leading-[1.05]"
-              style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1', fontSize: "clamp(32px, 5vw, 56px)" }}
+              className="font-['Fraunces'] font-bold t-ink leading-[1.08] max-w-2xl"
+              style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1', fontSize: "clamp(32px, 4.2vw, 52px)" }}
             >
               Preserving the nomadic, socialist &amp; modern plaster of Mongolia
             </h1>
-            <p className="font-['Manrope'] font-normal t-ink-muted text-[15px] lg:text-[16px] leading-[1.6] max-w-2xl">
+            <p className="font-['Manrope'] font-normal t-ink-muted text-[15px] lg:text-[16px] leading-[1.7] max-w-2xl">
               A comprehensive physical and digital catalog tracing Mongolia's built transformation—from the wooden monasteries and traditional round gers of the early 20th century to Soviet-era concrete masterworks and the raw, rapid glass towers of modern Ulaanbaatar.
             </p>
             <div className="flex gap-4 items-start flex-wrap">
@@ -312,7 +346,7 @@ export default function App() {
               </button>
             </div>
           </div>
-          <div className="t-card border rounded-2xl overflow-hidden shrink-0 w-full lg:w-[580px] h-[280px] sm:h-[360px] lg:h-[460px]">
+          <div className="t-card border rounded-2xl overflow-hidden shrink-0 w-full xl:w-[48%] xl:max-w-[580px] h-[280px] sm:h-[360px] xl:h-[460px]">
             <img
               src={imgHeroImg}
               alt="Soviet-era architectural building in Ulaanbaatar, Mongolia"
@@ -323,20 +357,20 @@ export default function App() {
 
         {/* ARCHITECTURAL METAMORPHOSIS */}
         <section id="collections" className="px-5 sm:px-10 lg:px-20 pt-8 pb-6">
-          <div className="t-editorial border-t border-b flex flex-col lg:flex-row gap-10 lg:gap-20 px-6 sm:px-10 lg:px-20 py-12 lg:py-16">
+          <div className="t-editorial border-t border-b flex flex-col xl:flex-row gap-10 xl:gap-20 px-6 sm:px-10 lg:px-20 py-12 lg:py-16">
             <div className="flex flex-col gap-5 flex-1 min-w-0">
               <span className="font-mono font-semibold t-accent text-[12px] uppercase">A Century of Plaster and Sky</span>
               <h2
                 className="font-['Fraunces'] font-semibold t-ink leading-tight"
-                style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1', fontSize: "clamp(24px, 3.5vw, 32px)" }}
+                style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1', fontSize: "clamp(24px, 3.2vw, 32px)" }}
               >
                 The Architectural Metamorphosis
               </h2>
-              <p className="font-['Manrope'] font-normal t-ink-muted text-[15px] leading-[1.6]">
+              <p className="font-['Manrope'] font-normal t-ink-muted text-[15px] leading-[1.7]">
                 Mongolian architecture represents a singular collision of climatic survival and political gravity. From the wooden structural integrity of the Gandantegchinlen Monastery surviving revolutions, through the heavy pre-cast concrete block districts designed for severe -40°C winters, to contemporary developments, this archive provides an unvarnished technical look at the structural decisions made in our shifting capital.
               </p>
             </div>
-            <div className="t-trivia flex flex-col gap-5 p-7 rounded-2xl shrink-0 w-full lg:w-[420px]">
+            <div className="t-trivia flex flex-col gap-5 p-7 rounded-2xl shrink-0 w-full xl:w-[380px]">
               <span className="font-mono font-semibold t-accent2 text-[12px]">ARCHIVE TRIVIA</span>
               <div className="flex flex-col gap-1.5">
                 <h3 className="font-['Fraunces'] font-semibold t-ink text-[18px]" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>
@@ -366,7 +400,7 @@ export default function App() {
               <span className="font-mono font-semibold t-accent text-[12px]">FILTER CATALOGUE</span>
               <h2
                 className="font-['Fraunces'] font-semibold t-ink"
-                style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1', fontSize: "clamp(26px, 4vw, 36px)" }}
+                style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1', fontSize: "clamp(26px, 3.5vw, 36px)" }}
               >
                 Decades of Transformation
               </h2>
@@ -398,9 +432,9 @@ export default function App() {
             {cards.map((card) => (
               <article
                 key={card.ref}
-                className="t-card border rounded-2xl p-6 flex flex-col gap-4 shadow-[0px_6px_9px_rgba(29,31,32,0.04)] hover:shadow-[0px_12px_24px_rgba(29,31,32,0.08)] hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
+                className="t-card border rounded-2xl p-5 sm:p-6 flex flex-col gap-4 shadow-[0px_6px_9px_rgba(29,31,32,0.04)] hover:shadow-[0px_12px_24px_rgba(29,31,32,0.08)] hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
               >
-                <div className="t-card-img rounded-xl overflow-hidden h-[220px] shrink-0">
+                <div className="t-card-img rounded-xl overflow-hidden h-[200px] sm:h-[220px] shrink-0">
                   <img
                     src={card.img}
                     alt={card.alt}
@@ -446,16 +480,16 @@ export default function App() {
         </section>
 
         {/* CONTACT */}
-        <section id="inquire" className="flex flex-col lg:flex-row gap-10 lg:gap-16 px-5 sm:px-10 lg:px-20 py-12 lg:py-20">
+        <section id="inquire" className="flex flex-col xl:flex-row gap-10 xl:gap-16 px-5 sm:px-10 lg:px-20 py-12 lg:py-20">
           <div className="flex flex-col gap-6 flex-1 min-w-0">
             <span className="font-mono font-semibold t-accent text-[12px] uppercase">DISPATCH DESK</span>
             <h2
-              className="font-['Fraunces'] font-bold t-ink leading-tight"
-              style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1', fontSize: "clamp(28px, 4vw, 40px)" }}
+              className="font-['Fraunces'] font-bold t-ink leading-tight max-w-2xl"
+              style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1', fontSize: "clamp(28px, 3.5vw, 40px)" }}
             >
               Contribute blue prints or register adjustments
             </h2>
-            <p className="font-['Manrope'] font-normal t-ink-muted text-[15px] leading-[1.6]">
+            <p className="font-['Manrope'] font-normal t-ink-muted text-[15px] leading-[1.7] max-w-2xl">
               We welcome submissions of historical photography, structural blueprints, and documented restoration notes from past centuries. Help us bridge the gaps in our cultural heritage index.
             </p>
             {submitted && (
@@ -468,7 +502,7 @@ export default function App() {
               </div>
             )}
           </div>
-          <div className="t-form-card border rounded-2xl p-8 flex flex-col gap-6 w-full lg:w-[520px] shrink-0">
+          <div className="t-form-card border rounded-2xl p-6 sm:p-8 flex flex-col gap-6 w-full xl:w-[520px] shrink-0">
             <h3 className="font-['Fraunces'] font-semibold t-ink text-[24px]" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>
               Inquiry Registration
             </h3>
