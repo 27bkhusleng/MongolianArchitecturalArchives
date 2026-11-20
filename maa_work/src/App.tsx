@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-const assets = "/assets";
+const assets = `${import.meta.env.BASE_URL}assets`;
+
 const imgHeroImg = `${assets}/3cf62.png`;
 const imgCardImage = `${assets}/e3d57.png`;
 const imgCardImage1 = `${assets}/75d6d.png`;
