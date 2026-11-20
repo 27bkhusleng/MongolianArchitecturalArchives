@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 import path from 'node:path'
 
 export default defineConfig({
+  base: '/MongolianArchitecturalArchives/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
@@ -21,3 +22,4 @@ export default defineConfig({
     strictPort: false,
   },
 })
+
