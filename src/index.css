@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap');
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --color-bg: #efece6;
+  --color-surface: #faf9f6;
+  --color-surface-alt: #efece6;
+  --color-border: #d1cdc5;
+  --color-ink: #1d1f20;
+  --color-ink-muted: #66635f;
+  --color-ink-faint: #e5e1da;
+  --color-accent: #c57b57;
+  --color-accent2: #d68c45;
+  --color-footer-bg: #1d1f20;
+  --color-footer-text: #e5e1da;
+}
+
+.dark {
+  --color-bg: #1d1f20;
+  --color-surface: #2a2c2d;
+  --color-surface-alt: #222426;
+  --color-border: #3a3c3e;
+  --color-ink: #efece6;
+  --color-ink-muted: #b8b4ae;
+  --color-ink-faint: #d1cdc5;
+  --color-accent: #d68c60;
+  --color-accent2: #e0a050;
+  --color-footer-bg: #111314;
+  --color-footer-text: #d1cdc5;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  overflow-x: hidden;
+}
+
+/* Theme-aware utility overrides */
+.t-bg       { background-color: var(--color-bg); }
+.t-surface  { background-color: var(--color-surface); }
+.t-surface-alt { background-color: var(--color-surface-alt); }
+.t-border   { border-color: var(--color-border); }
+.t-ink      { color: var(--color-ink); }
+.t-ink-muted { color: var(--color-ink-muted); }
+.t-ink-faint { color: var(--color-ink-faint); }
+.t-accent   { color: var(--color-accent); }
+.t-accent2  { color: var(--color-accent2); }
+
+.t-nav {
+  background-color: var(--color-bg);
+  border-color: var(--color-border);
+}
+
+.t-card {
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+.t-card-img {
+  background-color: var(--color-surface-alt);
+}
+
+.t-trivia {
+  background-color: var(--color-surface-alt);
+}
+
+.t-editorial {
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+.t-pill {
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+  color: var(--color-ink-muted);
+}
+
+.t-pill:hover {
+  background-color: var(--color-surface-alt);
+}
+
+.t-pill-active {
+  background-color: var(--color-ink);
+  border-color: var(--color-ink);
+  color: var(--color-bg);
+}
+
+.t-input {
+  background-color: var(--color-surface-alt);
+  color: var(--color-ink);
+}
+
+.t-form-card {
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+.t-footer {
+  background-color: var(--color-footer-bg);
+}
+
+.t-footer-text {
+  color: var(--color-footer-text);
+}
+
+.t-search-pill {
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+  color: var(--color-ink-muted);
+}
+
+.t-theme-switch {
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+.t-theme-btn-active {
+  background-color: var(--color-surface-alt);
+}
